@@ -13,7 +13,21 @@ public class LongestArithmeticSubSeq1027
 
         for (int i = 0 ; i < ip.length; ++i)
         {
-            
+            for (int j = 0; j < i; ++j)
+            {
+                int diff = ip[i] - ip[j];
+                int len = 1;
+                if(map[j].containsKey(diff))
+                {
+                    len += map[j].get(diff);
+                }
+                if(!map[i].containsKey(diff))
+                {
+                    map[i].put(diff, 0);
+                }
+                map[i].put(diff, Math.max(len, map[i].get(diff)));
+                max = Math.max(max, map[i].get(diff));
+            }
         }
 
         return max;
